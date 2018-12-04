@@ -16,3 +16,4 @@ function mostrarMensagem(texto, tipo){
    }, 3000);
 
 }
+

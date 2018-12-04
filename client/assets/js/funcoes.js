@@ -182,22 +182,25 @@ document.querySelector('#btn-alterar').addEventListener('click', function(event)
         $('#modal').modal('toggle');
 });
 
-//quando clicar no btn-deletar
-document.querySelector('#btn-deletar').addEventListener('click', function(event){
-
+//Quando clicar o btn-deletar...
+document.querySelector('#btn-deletar').addEventListener('click',function(event){
     event.preventDefault();
-
-    let promise = deletarTarefa(tarefa.id);
-    promise
-        .then(function(resolve){
-            mostrarMensagem('Tarefa deletada com sucesso', 's');
-            montarPainel();
-        })
-        .catch(function(erro){
-            mostrarMensagem(erro, 'd');
-        })
-
-        // fechar formulario
-        $('#modal').modal('toggle');
-
+    //confirmar exclusao
+    $('#modal').modal('toggle');
+    $('#modal-excluir').modal('toggle');
 });
+
+//Função de confirmação
+function confirmarExclusao(){
+    let promise = deletarTarefa(tarefa.id);
+    promise 
+    .then(function(resolve){
+        mostrarMensagem('Tarefa deletada com sucesso','s');
+        montarPainel();
+    })
+    .catch(function(erro){
+        mostrarMensagem(erro,'d');
+    }); 
+    //fechar o formulario
+    $('#modal-excluir').modal('toggle');
+}
